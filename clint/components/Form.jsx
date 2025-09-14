@@ -53,8 +53,8 @@ const Form = () => {
         <input
           type="text"
           placeholder="Enter your feedback here"
-          name="message"
-          value={formData.message}
+          name="Feedback" // Corrected: name should be "Feedback"
+          value={formData.Feedback} // Corrected: value should be "formData.Feedback"
           onChange={handleChange}
           required
         /><br/><br/>
