@@ -1,0 +1,12 @@
+if u want to write npm start instand of node index.js to run file 
+  go in package.json 
+    find script{
+        "start" = "node index.js"
+    }
+
+agar tume frontend data ko handle kerna hai to 
+      1. cors install karna hogya(npm install cors)
+      2 . u need handle middleware
+              
+              app.use(cors())
+              app.use(express.json());
