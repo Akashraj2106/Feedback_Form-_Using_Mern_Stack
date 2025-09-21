@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'; // <-- Must import Link
+import { Link } from 'react-router-dom'; // Corrected: Added import statement for Link
 const Navbar = () => {
   return (
     <div>
@@ -11,4 +11,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;

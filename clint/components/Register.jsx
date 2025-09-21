@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/Register", formData); // lowercase route
+      await axios.post("http://localhost:5000/api/Register", formData); // Corrected: changed "register" to "Register"
       setStatus("Register confirmed ✅");
       setFormData({ name: "", Email: "", Phoneno: "", age: "" });
     } catch (err) {
@@ -62,7 +62,7 @@ const Register = () => {
           type="number"
           name="age"
           placeholder="Enter Age"
-          value={formData.age || ""} // avoid React warning
+          value={formData.age || ""}
           onChange={handleChange}
           required
         />

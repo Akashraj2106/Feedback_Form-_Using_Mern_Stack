@@ -50,14 +50,13 @@ const Form = () => {
         /><br/><br/>
 
         <label>Feedback :</label>
-        <input
-          type="text"
+        <textarea
           placeholder="Enter your feedback here"
-          name="Feedback" // Corrected: name should be "Feedback"
-          value={formData.Feedback} // Corrected: value should be "formData.Feedback"
+          name="Feedback"
+          value={formData.Feedback}
           onChange={handleChange}
           required
-        /><br/><br/>
+        ></textarea><br/><br/>
 
         <button type="submit">Submit</button>
       </form>
