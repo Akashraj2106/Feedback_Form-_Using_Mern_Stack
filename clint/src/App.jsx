@@ -5,7 +5,7 @@ import About from '../components/About';
 import Navbar from '../components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-
+import Register from '../components/Register';
 const App = () => {
    
   
@@ -16,6 +16,7 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/Register" element={<Register/>} />
       </Routes>
     </Router>
   );

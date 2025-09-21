@@ -5,6 +5,8 @@ const Home = () => {
     <div>
       <h1>Welcome to home page</h1>
       <Link to="/form">T0 HERE TO FILL FEEDBACK FROM</Link> |{" "}
+     <Link to="/Register">T0 Register yourself</Link> |{" "}
+
     </div>
   )
 }
