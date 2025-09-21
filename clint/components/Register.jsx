@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom'; // Corrected: Added import statement for Link
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +8,7 @@ const Register = () => {
     Email: "",
     Phoneno: "",
     age: "",
-    Password:""
+    Password: ""
   });
 
   const [status, setStatus] = useState("");
@@ -20,11 +20,11 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/Register", formData); // Corrected: changed "register" to "Register"
-      setStatus("Register confirmed ");
-      setFormData({ name: "", Email: "", Phoneno: "", age: "" , Password:""});
+      await axios.post("http://localhost:5000/api/Register", formData); // ✅ lowercase route
+      setStatus("Register confirmed ✅");
+      setFormData({ name: "", Email: "", Phoneno: "", age: "", Password: "" }); // ✅ reset all fields
     } catch (err) {
-      setStatus("Error in register ");
+      setStatus("Error in register ❌");
       console.error(err);
     }
   };
@@ -64,30 +64,30 @@ const Register = () => {
           type="number"
           name="age"
           placeholder="Enter Age"
-          value={formData.age || ""}
+          value={formData.age}
           onChange={handleChange}
           required
         />
-         <br />
+        <br />
         <input
           type="password"
           name="Password"
           placeholder="Enter Password"
-          value={formData.Password || ""}
+          value={formData.Password}
           onChange={handleChange}
           required
         />
         <br />
         <button type="submit">Register</button>
       </form>
+
       <p>{status}</p>
-       <p>
+
+      <p>
         Already have an account? <Link to="/Login">Login</Link>
       </p>
     </div>
   );
- 
-  
 };
 
 export default Register;

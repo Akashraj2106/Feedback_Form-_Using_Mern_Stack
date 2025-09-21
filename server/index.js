@@ -1,7 +1,7 @@
 const express = require("express");
-require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 const Feedback_Form = require("./models/Feedback_Form");
 const Register = require("./models/Register");
@@ -11,9 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// User Schema
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";  //npm install bcryptjs jsonwebtoken
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL)
@@ -38,6 +36,10 @@ app.get("/api/feedback", (req, res) => {
 
 app.get("/api/Register", (req, res) => {
   res.send("Register is working");
+});
+
+app.get("/api/Login", (req, res) => {
+  res.send("Login is working");
 });
 
 // Feedback POST
@@ -76,23 +78,27 @@ app.post("/api/Register", async (req, res) => {
   }
 });
 
+app.post("/api/Login", async (req, res) => {
+  try {
+    const { Email, Password } = req.body;
+
+    // check if user exists
+    const user = await Register.findOne({ Email });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid Email or Password" });
+    }
+
+    // check password
+    if (user.Password !== Password) {   // ❌ plain-text check (use bcrypt in production)
+      return res.status(400).json({ message: "Invalid Email or Password" });
+    }
+
+    res.json({ message: "Login successful" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
-// app.post("/api/auth/login", async (req, res) => {
-//   try {
-//     const { Email, Password } = req.body;
 
-//     const user = await User.findOne({ email });
-//     if (!user) return res.status(400).json({ msg: "User not found" });
-
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
-
-//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-//     res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
