@@ -21,6 +21,10 @@ const Register_schema = new mongoose.Schema({
         min: 1,
         max: 120,
         required: true
+    },
+    Password :{
+           type: String,
+          required: true,
     }
 });
 

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'; // Corrected: Added import statement for Link
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     Email: "",
     Phoneno: "",
-    age: ""
+    age: "",
+    Password:""
   });
 
   const [status, setStatus] = useState("");
@@ -19,10 +21,10 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/Register", formData); // Corrected: changed "register" to "Register"
-      setStatus("Register confirmed ✅");
-      setFormData({ name: "", Email: "", Phoneno: "", age: "" });
+      setStatus("Register confirmed ");
+      setFormData({ name: "", Email: "", Phoneno: "", age: "" , Password:""});
     } catch (err) {
-      setStatus("Error in register ❌");
+      setStatus("Error in register ");
       console.error(err);
     }
   };
@@ -66,12 +68,26 @@ const Register = () => {
           onChange={handleChange}
           required
         />
+         <br />
+        <input
+          type="password"
+          name="Password"
+          placeholder="Enter Password"
+          value={formData.age || ""}
+          onChange={handleChange}
+          required
+        />
         <br />
         <button type="submit">Register</button>
       </form>
       <p>{status}</p>
+       <p>
+        Already have an account? <Link to="/Login">Login</Link>
+      </p>
     </div>
   );
+ 
+  
 };
 
 export default Register;
