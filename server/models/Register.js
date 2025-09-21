@@ -24,7 +24,7 @@ const Register_schema = new mongoose.Schema({
     },
     Password :{
            type: String,
-          required: true,
+            required: true
     }
 });
 

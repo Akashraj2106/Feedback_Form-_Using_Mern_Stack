@@ -11,6 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// User Schema
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";  //npm install bcryptjs jsonwebtoken
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("Database connected successfully"))
@@ -57,13 +61,13 @@ app.post("/api/feedback", async (req, res) => {
 // Register POST
 app.post("/api/Register", async (req, res) => {
   try {
-    const { name, Email, Phoneno, age } = req.body;
+    const { name, Email, Phoneno, age , Password } = req.body;
 
-    if (!Email || !Phoneno || !name) {
+    if (!Email || !Phoneno || !name || !Password) {
       return res.status(400).json({ error: "All fields required" });
     }
 
-    const register = new Register({ name, Email, Phoneno, age });
+    const register = new Register({ name, Email, Phoneno, age , Password });
     await register.save();
 
     res.status(201).json({ message: "Register successful", register });
@@ -71,3 +75,24 @@ app.post("/api/Register", async (req, res) => {
     res.status(500).json({ error: "Not registered", details: err.message });
   }
 });
+
+
+
+
+// app.post("/api/auth/login", async (req, res) => {
+//   try {
+//     const { Email, Password } = req.body;
+
+//     const user = await User.findOne({ email });
+//     if (!user) return res.status(400).json({ msg: "User not found" });
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+
+//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+//     res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });

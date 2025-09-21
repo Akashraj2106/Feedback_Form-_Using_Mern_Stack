@@ -73,7 +73,7 @@ const Register = () => {
           type="password"
           name="Password"
           placeholder="Enter Password"
-          value={formData.age || ""}
+          value={formData.Password || ""}
           onChange={handleChange}
           required
         />
