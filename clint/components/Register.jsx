@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/register", formData); // lowercase route
+      await axios.post("http://localhost:5000/api/Register", formData); // lowercase route
       setStatus("Register confirmed ✅");
       setFormData({ name: "", Email: "", Phoneno: "", age: "" });
     } catch (err) {
